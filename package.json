@@ -1,0 +1,27 @@
+{
+  "name": "eduapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karnavr/eduapps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karnavr/eduapps/issues"
+  },
+  "homepage": "https://github.com/karnavr/eduapps#readme",
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "live-server": "^1.2.2",
+    "prettier": "^3.4.2"
+  }
+}
