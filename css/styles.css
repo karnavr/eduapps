@@ -35,11 +35,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-svg {
-    border: 1px solid #ccc;
-    margin-top: 10px;
-}
-
 .math-block {
     text-align: center; /* Center the equation within the left-aligned text */
     font-size: 1.25rem;
