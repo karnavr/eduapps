@@ -1,23 +1,42 @@
+/* General styles */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 20px;
-    text-align: center;
+    padding: 0;
     background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-#content {
-    display: inline-block;
-    text-align: left;
+/* Flexbox container for layout */
+#container {
+    display: flex;
+    flex-direction: row; /* Arrange sections side by side */
+    gap: 1px; /* Space between controls and grid */
+    width: 80%;
+    max-width: 1200px;
+}
+
+/* Controls section styles */
+#controls-section {
+    flex: 1; /* Take up smaller width compared to the grid */
+    max-width: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Keep text left-aligned */
 }
 
 h1 {
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
 #controls {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 button {
@@ -35,8 +54,16 @@ button:hover {
     background-color: #0056b3;
 }
 
-.math-block {
-    text-align: center; /* Center the equation within the left-aligned text */
-    font-size: 1.25rem;
-    margin: 20px 0;
+/* Grid section styles */
+#grid-section {
+    flex: 2; /* Grid takes up more space than controls */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg#grid {
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

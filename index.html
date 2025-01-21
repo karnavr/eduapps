@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navier-Stokes Equation</title>
+    <title>E-Field Playground</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
@@ -14,14 +14,22 @@
     <script src="js/app.js"></script>
 </head>
 <body>
-    <div id="content">
-        <h1>Interactive Cartesian Grid</h1>
-        <div id="controls">
-            <p id="circle-location">Circle Location: (0, 0)</p>
-            <button id="reset-btn">Reset Circle</button>
+    <div id="container">
+        <!-- Controls Section -->
+        <div id="controls-section">
+            <h1>E-Field Playground</h1>
+            <div id="controls">
+                <button id="reset-btn">Reset</button>
+                <label>
+                    <input type="checkbox" id="show-vectors" />
+                    Show Vectors
+                </label>                
+            </div>
         </div>
-        <svg id="grid" width="600" height="600"></svg>
+        <!-- Grid Section -->
+        <div id="grid-section">
+            <svg id="grid" width="600" height="600"></svg>
+        </div>
     </div>
 </body>
 </html>
-
