@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
         addAxisLabels();
         addArrowMarker();
         renderPointP(); // Render point P after setting up the grid
-        updateElectricFieldSection(); // Update E-field in the sidebar
     }
     
 
@@ -555,4 +554,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize the app
     initializeGrid();
     initializeCharges(2);
+    calculateElectricField(); // Calculate E-field at the start
+    updateElectricFieldSection(); // Update E-field in the sidebar 
 });
