@@ -135,3 +135,8 @@ svg#grid {
     font-size: 10px;
     fill: black;
 }
+
+.point-p-label {
+    pointer-events: none; /* Disable text interaction */
+    user-select: none;    /* Prevent text highlighting */
+}

@@ -123,8 +123,66 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("orient", "auto-start-reverse")
             .append("path")
             .attr("d", "M 0 0 L 10 5 L 0 10 Z")
-            .attr("fill", "black");
+            .attr("fill", "green");
     }
+
+    function renderElectricField() {
+        const electricField = calculateElectricField(); // Calculate resultant E-field
+        const eMagnitude = Math.sqrt(electricField.x ** 2 + electricField.y ** 2);
+    
+        // Scale the electric field vector for visualization
+        const scaleFactor = 100; // Adjust this to fit the vector on the grid
+        const scaledEx = electricField.x * scaleFactor;
+        const scaledEy = electricField.y * scaleFactor;
+    
+        // Bind data for the electric field vector
+        const eVector = svg.selectAll(".electric-field-vector").data([electricField]);
+    
+        // Update the vector line
+        eVector
+            .attr("x1", xScale(pointP.x))
+            .attr("y1", yScale(pointP.y))
+            .attr("x2", xScale(pointP.x) + scaledEx)
+            .attr("y2", yScale(pointP.y) - scaledEy) // Flip y-axis for SVG
+            .attr("stroke", "green")
+            .attr("stroke-width", 2)
+            .attr("marker-end", "url(#arrowhead)");
+    
+        // Create the vector line if it doesn't exist
+        eVector.enter()
+            .append("line")
+            .attr("class", "electric-field-vector")
+            .attr("x1", xScale(pointP.x))
+            .attr("y1", yScale(pointP.y))
+            .attr("x2", xScale(pointP.x) + scaledEx)
+            .attr("y2", yScale(pointP.y) - scaledEy)
+            .attr("stroke", "green")
+            .attr("stroke-width", 2)
+            .attr("marker-end", "url(#arrowhead)");
+    
+        eVector.exit().remove();
+    
+        // Add or update the electric field label
+        // const eVectorLabel = svg.selectAll(".electric-field-label").data([electricField]);
+    
+        // eVectorLabel
+        //     .attr("x", xScale(pointP.x) + scaledEx / 2)
+        //     .attr("y", yScale(pointP.y) - scaledEy / 2 - 10) // Offset above the vector
+        //     .text(`E`);
+    
+        // eVectorLabel.enter()
+        //     .append("text")
+        //     .attr("class", "electric-field-label")
+        //     .attr("text-anchor", "middle")
+        //     .attr("font-size", "10px")
+        //     .attr("fill", "red")
+        //     .attr("x", xScale(pointP.x) + scaledEx / 2)
+        //     .attr("y", yScale(pointP.y) - scaledEy / 2 - 10)
+        //     .text(`E`);
+    
+        // eVectorLabel.exit().remove();
+    }
+    
 
     function renderPointP() {
         const pointSelection = svg.selectAll(".point-p").data([pointP]);
@@ -200,11 +258,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("text-anchor", "middle")
             .attr("font-size", "10px")
             .attr("fill", "black")
+            .attr("class", "point-p-label")
             .attr("x", d => xScale(d.x))
             .attr("y", d => yScale(d.y) - 15) // Offset label above the point
             .text("P");
 
         pointLabel.exit().remove();
+
+        renderElectricField();
     }
     
     
@@ -298,6 +359,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Remove old labels
         chargeLabels.exit().remove();
+
+        renderElectricField(); // Render the electric field vector
     }
     
     
@@ -441,8 +504,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let eField = { x: 0, y: 0 }; // Initialize resultant field
     
         charges.forEach(charge => {
-            const dx = charge.x - pointP.x; // x-component of vector from charge to P
-            const dy = charge.y - pointP.y; // y-component of vector from charge to P
+            const dx = pointP.x - charge.x; // x-component of vector from charge to P
+            const dy = pointP.y - charge.y; // y-component of vector from charge to P
             const rSquared = dx * dx + dy * dy; // Distance squared
             const r = Math.sqrt(rSquared); // Distance magnitude
     
@@ -559,6 +622,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .duration(500)
             .attr("x", d => xScale(d.x))
             .attr("y", d => yScale(d.y) - 15);
+
+        svg.selectAll(".electric-field-vector")
+            .data([calculateElectricField()])
+            .transition()
+            .duration(500)
+            .attr("x1", xScale(pointP.x))
+            .attr("y1", yScale(pointP.y))
+            .attr("x2", d => xScale(pointP.x) + d.x * 100)
+            .attr("y2", d => yScale(pointP.y) - d.y * 100);
     
         // Update side panel inputs and positions after animation
         setTimeout(() => {
@@ -587,4 +659,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeCharges(2);
     calculateElectricField(); // Calculate E-field at the start
     updateElectricFieldSection(); // Update E-field in the sidebar 
+    renderElectricField(); // Render the electric field vector
 });
