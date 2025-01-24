@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addAxisLabels();
         addArrowMarker();
         renderPointP(); // Render point P after setting up the grid
+        renderElectricField(); // Render the electric field vector
     }
     
 
