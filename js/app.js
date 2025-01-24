@@ -185,6 +185,26 @@ document.addEventListener("DOMContentLoaded", () => {
             .style("display", d3.select("#show-vectors").property("checked") ? "block" : "none");
     
         vectorSelection.exit().remove();
+
+        // Add or update label for point P
+        const pointLabel = svg.selectAll(".point-p-label").data([pointP]);
+
+        pointLabel
+            .attr("x", d => xScale(d.x))
+            .attr("y", d => yScale(d.y) - 15) // Offset label above the point
+            .text("P");
+
+        pointLabel.enter()
+            .append("text")
+            .attr("class", "point-p-label")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "10px")
+            .attr("fill", "black")
+            .attr("x", d => xScale(d.x))
+            .attr("y", d => yScale(d.y) - 15) // Offset label above the point
+            .text("P");
+
+        pointLabel.exit().remove();
     }
     
     
@@ -405,6 +425,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 .on("input", function () {
                     // Update the charge value in the array
                     charge.q = parseFloat(this.value);
+                    calculateElectricField(); // Recalculate E-field
+                    updateElectricFieldSection(); // Update E-field in the sidebar
                 });
     
             // Unit label (nanocoulombs)

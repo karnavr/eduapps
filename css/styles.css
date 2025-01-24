@@ -128,3 +128,10 @@ svg#grid {
     pointer-events: none; /* Disable text interaction */
     user-select: none;    /* Prevent text highlighting */
 }
+
+.vector-label {
+    pointer-events: none; /* Disable text interaction */
+    user-select: none;    /* Prevent text highlighting */
+    font-size: 10px;
+    fill: black;
+}
