@@ -455,13 +455,13 @@ document.addEventListener("DOMContentLoaded", () => {
         charges.forEach((charge, index) => {
             positionsContainer.append("p")
                 .attr("class", "position-vector")
-                .html(`\\( \\vec{r}_${index + 1} = \\langle ${charge.x.toFixed(1)}, ${charge.y.toFixed(1)} \\rangle \\)`);
+                .html(`\\( \\vec{r}_${index + 1}' = \\langle ${charge.x.toFixed(1)}, ${charge.y.toFixed(1)} \\rangle \\)`);
         });
     
         // Add position text for point P
         positionsContainer.append("p")
             .attr("class", "point-p-position")
-            .html(`\\( P = \\langle ${pointP.x.toFixed(1)}, ${pointP.y.toFixed(1)} \\rangle \\)`);
+            .html(`\\( \\vec{P} = \\langle ${pointP.x.toFixed(1)}, ${pointP.y.toFixed(1)} \\rangle \\)`);
     
         // Render LaTeX for all positions
         renderMathInElement(positionsContainer.node());
