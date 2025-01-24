@@ -113,3 +113,18 @@ svg#grid {
     margin-left: 5px;
     font-size: 0.9rem;
 }
+
+.axis-number {
+    pointer-events: none; /* Disable text interaction */
+    user-select: none;    /* Prevent text highlighting */
+}
+
+.charge-label {
+    pointer-events: none; /* Disable text interaction */
+    user-select: none;    /* Prevent text highlighting */
+}
+
+.axis-label {
+    pointer-events: none; /* Disable text interaction */
+    user-select: none;    /* Prevent text highlighting */
+}

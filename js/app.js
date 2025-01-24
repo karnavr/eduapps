@@ -65,24 +65,29 @@ document.addEventListener("DOMContentLoaded", () => {
     function addAxisLabels() {
         for (let i = -10; i <= 10; i++) {
             if (i !== 0) {
+                // Add x-axis numbers
                 svg.append("text")
                     .attr("x", xScale(i))
                     .attr("y", yScale(0) + 15)
                     .attr("text-anchor", "middle")
                     .attr("font-size", "10px")
                     .attr("fill", "black")
+                    .attr("class", "axis-number") // Add this class for styling
                     .text(i);
-
+    
+                // Add y-axis numbers
                 svg.append("text")
                     .attr("x", xScale(0) - 15)
                     .attr("y", yScale(i) + 5)
                     .attr("text-anchor", "end")
                     .attr("font-size", "10px")
                     .attr("fill", "black")
+                    .attr("class", "axis-number") // Add this class for styling
                     .text(i);
             }
         }
-
+    
+        // Add x-axis label
         svg.append("text")
             .attr("x", xScale(10) + 20)
             .attr("y", yScale(0) + 5)
@@ -90,8 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("font-size", "14px")
             .attr("font-weight", "bold")
             .attr("fill", "black")
+            .attr("class", "axis-label") // Add this class for styling
             .text("x");
-
+    
+        // Add y-axis label
         svg.append("text")
             .attr("x", xScale(0) - 10)
             .attr("y", yScale(10) - 20)
@@ -99,8 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("font-size", "14px")
             .attr("font-weight", "bold")
             .attr("fill", "black")
+            .attr("class", "axis-label") // Add this class for styling
             .text("y");
     }
+    
 
     function addArrowMarker() {
         svg.append("defs")
